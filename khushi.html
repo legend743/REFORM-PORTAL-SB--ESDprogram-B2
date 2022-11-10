@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+    <script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict'
+
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.querySelectorAll('.needs-validation')
+
+          // Loop over them and prevent submission
+          Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+              form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+              }, false)
+            })
+        })()
+        </script>
+ <style>
+    .form-control{
+      width: 193px;
+    }
+    * {
+      padding: 5px;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: rgb(198, 193, 183);
+    }
+
+    .row {
+      background-color: white;
+      border-radius: 30px;
+    }
+
+    img {
+      margin-top: 46px;
+      border-radius: 30px;
+    }
+
+    h1 {
+      margin-left: 4pc;
+      margin-top: 3pc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h1 {
+      margin-top: 5px;
+      margin-left: 32%;
+    }
+    #but:hover {
+            background: white;
+            border: 1px solid;
+            color: black;
+        }
+
+    .formerror {
+        color:red;
+    }
+
+    #Message,#Message2{
+      color: red;
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <section class="form my-4 mx-5">
+
+    <div class="container">
+
+      <div class="row no-gutters">
+
+        <div class="col-lg-5">
+
+          <img src="crowdb.jpg" alt="" class="img-fluid">
+        </div>
+
+        <div class="col-lg-7">
+          <h1>Sign-up</h1>
+
+          <form action="/myaction.php" class="row lg-3" name="myForm" onsubmit="return validateForm()" method="post">
+            <div class="col-md-4" class="formdesign" id="name">
+              <label for="validationServer01" class="form-label" type="text" >First name</label>
+              <input type="text" pattern="^[a-zA-Z]+" oninvalid="setCustomValidity('cannot contain any numeric value')" name="fname" class="form-control" id="FirstName" value="" required><span class="formerror"></span>
+              <span id="Message"></span>
+              </div>
+        <br>
+            <div class="col-md-4" class="formdesign" id="name">
+              <label for="validationServer02" class="form-label">Last name</label>
+              <input type="text" pattern="^[a-zA-Z]+" oninvalid="setCustomValidity('Pcannot contain any numeric value')" name="lname" class="form-control" id="LastName" value="" required><span class="formerror"></span>
+              <span id="Message2"></span>
+            </div>
+
+            <div class="col-md-3">
+              <label for="validationServer04" class="form-label">Type</label>
+              <select class="form-control" id="validationServer04"
+                aria-describedby="validationServer04Feedback" required>
+                <option selected disabled value="">Select..</option>
+                <option>Individual</option>
+                <option>organization</option>
+              </select>
+            </div>
+
+                <div class="col-md-3" class="formdesign" id="mobile">
+                    <label for="validationCustom05" class="form-label">Mobile.</label>
+              <input type="number" name="fmobile" placeholder="1234567890" required><span class="formerror"></span>
+            </div>
+
+            <div class="col-md-4" class="formdesign" id="email"
+            style="    width: fit-content;
+            margin-left: 48px;">
+              <label for="validationServer03" class="form-label">Email</label>
+              <div class="input-group has-validation" style="margin-top:-5px;">
+                <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                <input type="email" class="form-control" id="validationServerEmailname" placeholder="xyz@"
+                  aria-describedby="inputGroupPrepend3 validationServerEmailFeedback" required><span class="formerror"></span>
+
+              </div>
+            </div>
+            <div class="col-12">
+                <br><input class="btn btn-primary" type="submit" value="Sign-up"
+                style=" padding:8px 107px;
+                margin-top: 11px;
+                margin-bottom: 15px;
+                margin-left: 177px;
+                text-align: center;">
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </body>
+  <script>
+
+   function clearErrors(){
+        errors=document.getElementsByClassName('formerror');
+        for(let item of errors)
+        {
+            item.innerHTML="";
+        }
+    }
+   function seterror(id,error){
+       element=document.getElementById(id);
+       element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+ }
+
+   function validateForm() {
+    var returnval=true;
+    clearErrors();
+
+      var mobile=document.forms['myForm']["fmobile"].value;
+     if(mobile.length !=10){
+        seterror("mobile","*Mobile number should be of 10 digits");
+        returnval=false;
+      }
+
+      /-----------------Conditions for first name --------------/
+
+      var firstName = document.getElementById("FirstName").value;
+      if (firstName == "") {
+        document.getElementById("Message").innerHTML="* Please fill username";
+        return false;
+      }
+      if (firstName.length < 3) {
+        document.getElementById("Message").innerHTML="* first name is too short";
+        return false;
+      }
+
+        /-----------------Conditions for Second name --------------/
+
+      var lastName = document.getElementById("LastName").value;
+      if (lastName == "") {
+        document.getElementById("Message2").innerHTML="* Please fill username";
+        return false;
+      }
+      if (lastName.length < 3) {
+        document.getElementById("Message2").innerHTML="* last name is too short";
+        return false;
+      }
+
+      return returnval;
+
+   }
+
+
+
+  </script>
+  
+  </html>
