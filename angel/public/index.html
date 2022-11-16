@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script> <!--
+      
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"
+  crossorigin></script>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
+  crossorigin></script>
+
+<script>var Alert = ReactBootstrap.Alert;</script>
+    <title>Angel_help</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <script>
+      var myInput = document.getElementById("psw");
+      var letter = document.getElementById("letter");
+      var capital = document.getElementById("capital");
+      var number = document.getElementById("number");
+      var length = document.getElementById("length");
+      
+      // When the user clicks on the password field, show the message box
+      myInput.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+      }
+      
+      // When the user clicks outside of the password field, hide the message box
+      myInput.onblur = function() {
+        document.getElementById("message").style.display = "none";
+      }
+      
+      // When the user starts to type something inside the password field
+      myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {  
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+        }
+        
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {  
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+      
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {  
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+        }
+        
+        // Validate length
+        if(myInput.value.length >= 8) {
+          length.classList.remove("invalid");
+          length.classList.add("valid");
+        } else {
+          length.classList.remove("valid");
+          length.classList.add("invalid");
+        }
+      }
+      </script>
+<!-- ----------------------------signupscript---------------------------------       -->
+<script>
+  $(document).ready(function(){
+    $("#form_register").validate({
+    rules:{
+    'fname':{
+    required: true,
+    minlength: 3,
+    accept: "[a-zA-Z]+",
+    },
+    'lname':{
+    required: true,
+    minlength: 3,
+    accept: "[a-zA-Z]+",
+
+  },
+  'email':{
+  required: true,
+  email: true,
+ },
+  'fmobile':{
+  required: true,
+  accept: "[0-9]+",
+  minlength: 10,
+  maxlength: 16,
+  
+
+  },
+  'type':{
+    required: true,
+  }
+  },
+  
+  messages:{
+  
+  'fname':{
+  
+  required: "Please enter first name",
+  
+  minlength: "Plase enter  3 characters!",
+  accept: "Plase enter only characters!",
+  },
+  
+  'lname':{
+  required: " Please enter last name",
+  minlength: "Plase enter  3 characters",
+  accept: "Plase enter only characters!",
+  },
+  
+  'email':{
+  
+  required: "Please enter email ",
+  
+  email: "Please enter a valid email address!",
+  
+  },
+  
+  'fmobile':{
+  
+  required: "Please enter mobile number",
+  
+  minlength  : "Please enter at least 10 digits!",
+  maxlength  : "Please enter at least 10 digits!",
+  accept: "enter only numbers",
+  
+  },
+  'type':{
+  
+  required: "Please select",
+  
+
+  
+  },
+  
+  
+  }
+  
+  });
+  
+  });
+  
+  </script>
+  <!-- ----------------------------signupscript--------------------------------- -->
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+   
+   <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+   
+   <!-- jquery validation plugin //-->
+   
+   <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js"></script>
+   <script>
+     $(document).ready(function(){
+       $("#form_register").validate({
+       rules:{
+       'fname':{
+       required: true,
+       minlength: 3,
+       accept: "[a-zA-Z]+",
+       },
+       'lname':{
+       required: true,
+       minlength: 3,
+       accept: "[a-zA-Z]+",
+
+     },
+     'email':{
+     required: true,
+     email: true,
+    },
+     'fmobile':{
+     required: true,
+     accept: "[0-9]+",
+     minlength: 10,
+     maxlength: 16,
+     
+
+     },
+     'type':{
+       required: true,
+     }
+     },
+     
+     messages:{
+     
+     'fname':{
+     
+     required: "Please enter first name",
+     
+     minlength: "Plase enter  3 characters!",
+     accept: "Plase enter only characters!",
+     },
+     
+     'lname':{
+     required: " Please enter last name",
+     minlength: "Plase enter  3 characters",
+     accept: "Plase enter only characters!",
+     },
+     
+     'email':{
+     
+     required: "Please enter email ",
+     
+     email: "Please enter a valid email address!",
+     
+     },
+     
+     'fmobile':{
+     
+     required: "Please enter mobile number",
+     
+     minlength  : "Please enter at least 10 digits!",
+     maxlength  : "Please enter at least 10 digits!",
+     accept: "enter only numbers",
+     
+     },
+     'type':{
+     
+     required: "Please select",
+     
+
+     
+     },
+     
+     
+     }
+     
+     });
+     
+     });
+     
+     </script>
+  </body>
+</html>
